@@ -1,68 +1,38 @@
 # MyShell
-Enhance your command-line efficiency with a versatile suite of utilities for process management and text processing, including a custom shell, process starter, word counter, and word replacer.
 
-## Project Overview
+## Overview
+This project develops a custom shell environment, enhancing command-line interaction by supporting process management, I/O redirection, and network communication. It utilizes C language for creating a flexible and efficient shell capable of executing commands, managing processes, and handling file and network I/O operations.
 
-This suite of command-line utilities is designed to offer powerful, yet easy-to-use tools that extend your shell's capabilities, simplify process management, and provide robust text manipulation functionalities. Whether you're automating routine tasks, managing processes, or manipulating text data, this toolkit is built to improve your productivity and make command-line operations more efficient and intuitive.
+## Components
 
-### Features
+### mio.c & mio.h
+Implements a minimalistic I/O library, providing essential functions for input/output operations within the shell, facilitating streamlined data handling.
 
-- **Custom Shell (shell2.c)**: An interactive command-line interface that allows for executing commands, managing background processes, and enhancing your command-line navigation and operation capabilities.
-- **Process Starter (proc_starter.c)**: Simplifies the initiation and management of processes, offering a straightforward way to run commands or scripts in the background or foreground, with enhanced control over their execution.
-- **Word Counter (word_counter.c)**: Quickly counts words in a given text file or input stream, providing valuable insights for text analysis, content creation, and data processing tasks.
-- **Word Replacer (word_replacer.c)**: A handy tool for replacing words or phrases in text files, perfect for batch editing, content updates, and automating the correction of common errors or updates in documentation or code comments.
+### proc_starter.c
+Focuses on initializing and managing processes. It includes functions to start, stop, and monitor the status of processes, integrating closely with the shell's command execution framework.
 
-## Getting Started
+### shell2.c
+Acts as the core of the custom shell, implementing the user interface, command parsing, and execution logic. It supports executing simple commands, as well as advanced features like piping, redirection, and TCP redirection for network communication.
 
-### Prerequisites
+### word_replacer.c
+Provides functionality to replace specified words in the input stream. This can be used for filtering output or modifying commands before execution.
 
-Before you begin, ensure you have the following installed on your system:
-- A C compiler (GCC recommended) to compile the utilities.
-- Basic knowledge of command-line operations and shell environments.
+### word_counter.c
+Counts occurrences of words, useful for analyzing command output or input stream content, offering insights into data processed by the shell.
 
-### Installation
+## Installation
 
-To set up the Command-Line Utilities Suite on your system, follow these steps:
+To compile the project, ensure GCC or an equivalent compiler supporting C is installed. Use the makefile provided or compile manually with `gcc -o custom_shell shell2.c mio.c proc_starter.c word_replacer.c word_counter.c -I.`
 
-1. Clone the repository to your local machine:
-```bash
-git clone <repository-url>
-```
+## Usage
 
-2. Navigate to the cloned directory and compile each utility using your C compiler. For example, with GCC:
-```bash
-gcc -o shell shell2.c
-gcc -o proc_starter proc_starter.c
-gcc -o word_counter word_counter.c
-gcc -o word_replacer word_replacer.c
-```
+After compilation, run `./custom_shell` to start the shell. Use standard shell commands, along with the custom functionalities provided by the project. For specific features like word replacement or counting, refer to the internal documentation or help command integrated within the shell.
 
-3. You can now run any of the compiled utilities directly from your command line by specifying the utility's name followed by its required arguments.
+##Files to test processes
 
-### Usage Examples
+alice2.txt
+rwords.txt 
 
-- **Launching the Custom Shell**:
-```bash
-./shell
-```
-Once launched, you can execute commands directly within the custom shell environment.
-
-- **Starting a Process**:
-```bash
-./proc_starter 'command_or_script'
-```
-Replace `'command_or_script'` with the command or script you wish to run.
-
-- **Counting Words in a Text File**:
-
-./word_counter input.txt
-
-Replace `input.txt` with the path to your text file.
-
-- **Replacing Words in a Text File**:
-
-./word_replacer input.txt 'target_word' 'replacement_word'
-
-Specify the file, the word to replace, and the new word.
+PS: Any file works however, you can try with the bible and if you don't run out of memory, it should properly count the words and replace the requested words.
 
 
